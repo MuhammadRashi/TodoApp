@@ -3,7 +3,9 @@
     max-width: 500px;
      width: 500px;
      display: flex;
-     justify-content: center;
+     flex-direction: column;
+     /* justify-content: center; */
+     text-align: center;
      padding: 10%;
      height: 600px;
      border-radius: 6px;
@@ -13,4 +15,7 @@
 
 .todo-container h1{
     color: #8FA8C1;
+    padding: 10px;
+    margin: 5px;
+    outline: none;
 }
