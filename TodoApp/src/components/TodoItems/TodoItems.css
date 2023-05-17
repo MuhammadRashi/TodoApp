@@ -1,0 +1,18 @@
+.item-main-container{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+    padding: 10px;
+    text-align: left;
+    margin-left: 10px;
+    border-bottom: 0.5px dotted var(--for-color);
+}
+
+.list-item-container{
+   flex: 2;
+   color: var(--for-color);
+}
+.delete-button-container{
+    margin-left: 15px;
+    margin-right: 10px;
+}

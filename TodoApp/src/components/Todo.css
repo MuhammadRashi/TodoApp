@@ -1,5 +1,5 @@
 .todo-container{
-    background-color: #152431;
+    background-color: var(--bg-color);
     max-width: 500px;
      width: 500px;
      display: flex;
@@ -14,7 +14,7 @@
 }
 
 .todo-container h1{
-    color: #8FA8C1;
+    color: var(--for-color);
     padding: 10px;
     margin: 5px;
     outline: none;

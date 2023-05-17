@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import './Todo.css'
 import { TextInput } from './TextInput/TextInput'
 import { Buttons } from './Button/Buttons'
+import { TodoItems } from './TodoItems/TodoItems'
 
 export const Todo = () => {
   return (
@@ -12,6 +13,7 @@ export const Todo = () => {
             <div className='input-container'>
             <TextInput/>
             <Buttons/>
+            <TodoItems/>
             </div>
         </div>
     </Fragment>
