@@ -1,12 +1,17 @@
-.input-container input{
+.input-text{
     margin-top: 10px;
     border: none;
     padding: 8px;
     text-align: left;
-    width: 200px;
+    width: 250px;
     background-color: #152431;
-    /* outline: none; */
-    /* border: 1px ; */
     align-items: flex-start;
-
+    border: 1px solid #8FA8C1;
+    border-radius: 4px;
+    height: 40px;
+    color:#8FA8C1;
+}
+::placeholder {
+    color:#8FA8C1;
+    
 }

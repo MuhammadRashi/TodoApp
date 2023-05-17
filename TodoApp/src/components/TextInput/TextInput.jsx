@@ -6,9 +6,7 @@ export const TextInput = () => {
   return (
 
     <Fragment>
-        <div className='input-container'>
-            <input type="text" className="text" placeholder='New Todo' />
-        </div>
+            <input type="text" className="input-text" placeholder='New Todo' />
     </Fragment>
   )
 }
