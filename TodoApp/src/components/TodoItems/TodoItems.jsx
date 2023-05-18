@@ -7,10 +7,25 @@ import './TodoItems.css'
 
 
 
-export const TodoItems = () => {
+export const TodoItems = ({TaskList}) => {
   return (
     <Fragment>
-      <div className="item-main-container">
+      {TaskList.map((list)=>(
+
+        <div key={list.key} className="item-main-container">
+
+          <div className="list-item-container" >
+            <p  >{list.name}</p>
+          </div>
+          <div className="edit-button-container">
+            <img src={editBtn} />
+          </div>
+          <div className="delete-button-container">
+            <img src={deleteBtn} />
+            </div>        
+      </div>
+        ))}
+      {/* <div className="item-main-container">
 
           <div className="list-item-container">
             <p>This is Todo item</p>
@@ -21,19 +36,7 @@ export const TodoItems = () => {
           <div className="delete-button-container">
             <img src={deleteBtn} />
             </div>        
-      </div>
-      <div className="item-main-container">
-
-          <div className="list-item-container">
-            <p>This is Todo item</p>
-          </div>
-          <div className="edit-button-container">
-            <img src={editBtn} />
-          </div>
-          <div className="delete-button-container">
-            <img src={deleteBtn} />
-            </div>        
-      </div>
+      </div> */}
           
     </Fragment>
   )
