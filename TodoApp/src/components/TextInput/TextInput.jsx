@@ -2,7 +2,7 @@ import React from 'react'
 import { Fragment } from 'react'
 import './TextInput.css'
 
-export const TextInput = ({inputValue,handleChange,errorMessage}) => {
+export const TextInput = ({inputValue,handleChange,errorMessage,enterKeyPress}) => {
 
   return (
 
@@ -10,7 +10,7 @@ export const TextInput = ({inputValue,handleChange,errorMessage}) => {
             {errorMessage ?
             (<p className='danger'>{errorMessage}</p>):null
             }
-            <input type="text" className="input-text" placeholder='New Todo' value={inputValue} onChange={handleChange} />
+            <input type="text" className="input-text" placeholder='New Todo' value={inputValue} onChange={handleChange} onKeyPress={enterKeyPress} />
     </Fragment>
   )
 }

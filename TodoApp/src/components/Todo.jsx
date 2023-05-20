@@ -18,7 +18,17 @@ export const Todo = () => {
 
   // Input Value
   const [inputValue, SetInputValue] = useState("");
+  const [currentId, SetCurrentId] = useState("");
 
+  //Edit Delete button handle state
+  const [buttonActive,SetButtonActive]=useState([
+    {
+      key:0,
+      task:"",
+      tag:false,
+
+    }
+  ]);
 
   // Input Value
   const handleChangeInputValue = (event) => {
@@ -44,16 +54,71 @@ export const Todo = () => {
       SetErrorMessage("Enter Valid Data");
     }
   }
+// when press Enter key in input then add task to array
+  const handleEnterKey=(event)=>{
 
-  console.log(todolist.key=="all task");
+    if(event.key === "Enter")
+    {
+      addTodoTask();
+      // saveTaskToLocal();
+      // console.log(event.key,"=====press enter");
+
+    }
+
+  }
+
+// Task save to local storage
+  const saveTaskToLocal=()=>{
+    localStorage.setItem("todolist", JSON.stringify(todolist));
+
+    // let dataLocalStorage = localStorage.getItem("todolist");
+
+    // console.log(localStorage.getItem(todolist),"====local");
+    // console.log(dataLocalStorage,"====todo List");
+
+  }
+
+  // retrive task from local storage
+
+  const getTaskFromLocal=()=>{
+    let dataLocalStorage = localStorage.getItem("todolist");
+    // SetTodoList(JSON.parse(dataLocalStorage));
+   let getData= JSON.parse(dataLocalStorage);
+   if(getData){
+
+     SetTodoList(getData)
+   }
+  }
+
+  const editBtnHandle=(id,task)=>{
+    let activeDetails={
+      key:id,
+      task:task,
+      tag:true,
+    }
+    SetButtonActive(activeDetails);
+    SetCurrentId(id);
+    console.log(currentId,"key Edit button pressed");
+
+  }
 
 
+
+
+
+  // console.log(todolist.key=="all task");
+
+
+  // two useEffect for -- save to local storage when trigger todolist -- other get data from local storage
   useEffect(() => {
-    
-
-  
+   
+    saveTaskToLocal()
    
   }, [todolist])
+  
+  useEffect(() => {
+     getTaskFromLocal()
+  }, [])
   
   return (
     <Fragment>
@@ -61,10 +126,10 @@ export const Todo = () => {
       <div className='todo-container' >
         <h1>Todo List</h1>
         <div className='input-container'>
-          <TextInput inputValue={inputValue} handleChange={handleChangeInputValue} errorMessage={errorMessage} />
+          <TextInput inputValue={inputValue} handleChange={handleChangeInputValue} errorMessage={errorMessage} enterKeyPress={handleEnterKey} />
           <Buttons addTodoTask={addTodoTask} />
-          <TodoItems TaskList={todolist}/>
-          <EditItem />
+          <TodoItems TaskList={todolist} EditDeleteButtonTag={buttonActive.tag} editBtnHandle={editBtnHandle} myKey={currentId}/>
+          {/* <EditItem /> */}
         </div>
       </div>
     </Fragment>
