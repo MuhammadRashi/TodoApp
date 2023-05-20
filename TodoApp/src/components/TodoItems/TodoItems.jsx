@@ -11,23 +11,26 @@ export const TodoItems = ({TaskList,EditDeleteButtonTag,editBtnHandle,myKey}) =>
   return (
     <Fragment>
       {TaskList.map((list)=>(
-
-        
-
         <div key={list.key} className="item-main-container">
 
+          
+          {/* {EditDeleteButtonTag === true ? <EditItem/>:null } */}
+          {list.key === myKey ? <div><EditItem taskName={list.name}/></div>:
+          
+          <>
           <div className="list-item-container" >
             <p  > {list.name} </p>
           </div>
-          {/* {EditDeleteButtonTag === true ? <EditItem/>:null } */}
-          {list.key === myKey ? <EditItem/>:null }
-          
           <div className="edit-button-container"  onClick={() => {editBtnHandle(list.key,list.name) }}>
             <img src={editBtn} />
           </div>
           <div className="delete-button-container">
             <img src={deleteBtn} />
             </div>        
+          </>
+          
+            
+          }
       </div>
         ))}
       {/* <div className="item-main-container">

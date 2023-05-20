@@ -102,10 +102,6 @@ export const Todo = () => {
 
   }
 
-
-
-
-
   // console.log(todolist.key=="all task");
 
 
