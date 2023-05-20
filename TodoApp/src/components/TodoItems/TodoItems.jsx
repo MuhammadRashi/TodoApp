@@ -7,19 +7,22 @@ import './TodoItems.css'
 import { EditItem } from '../EditItems/EditItem';
 
 
-export const TodoItems = ({TaskList,EditDeleteButtonTag,editBtnHandle,myKey}) => {
+export const TodoItems = ({TaskList,editBtnHandle,SetActiveButton,buttonActive,SetTodoList}) => {
+
+  // const [currentId,currentTask,currentTag]=buttonActive;
+
   return (
     <Fragment>
-      {TaskList.map((list)=>(
-        <div key={list.key} className="item-main-container">
+      {TaskList !== null && TaskList.map((list)=>(
+        <div key={list.key} className="item-main-container"> 
 
           
           {/* {EditDeleteButtonTag === true ? <EditItem/>:null } */}
-          {list.key === myKey ? <div><EditItem taskName={list.name}/></div>:
+          {list.key === buttonActive.key && buttonActive.tag === true ? <div><EditItem currentTask={buttonActive} SetActiveButton={SetActiveButton} TaskList={TaskList} SetTodoList={SetTodoList}/></div>:
           
           <>
           <div className="list-item-container" >
-            <p  > {list.name} </p>
+            <p  > {list.name}  </p>
           </div>
           <div className="edit-button-container"  onClick={() => {editBtnHandle(list.key,list.name) }}>
             <img src={editBtn} />

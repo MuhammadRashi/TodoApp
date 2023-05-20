@@ -11,7 +11,7 @@ import { v4 as tskId } from "uuid";
 export const Todo = () => {
 
   // error useState
-  const [errorMessage,SetErrorMessage]=useState("");
+  const [errorMessage, SetErrorMessage] = useState("");
 
   //list of Task
   const [todolist, SetTodoList] = useState([]);
@@ -21,11 +21,11 @@ export const Todo = () => {
   const [currentId, SetCurrentId] = useState("");
 
   //Edit Delete button handle state
-  const [buttonActive,SetButtonActive]=useState([
+  const [buttonActive, SetButtonActive] = useState([
     {
-      key:0,
-      task:"",
-      tag:false,
+      key: 0,
+      task: "",
+      tag: false,
 
     }
   ]);
@@ -39,26 +39,25 @@ export const Todo = () => {
 
   // Add Todo Task to array
   const addTodoTask = () => {
-    if(inputValue!=""){
+    if (inputValue != "") {
 
-      let currentTask={
-        key:tskId(),
-        name:inputValue,
-        tag:false
-        
+      let currentTask = {
+        key: tskId(),
+        name: inputValue,
+        tag: false
+
       }
       SetTodoList((prev) => [...prev, currentTask]);
       SetInputValue("");
       SetErrorMessage("");
-    }else{
+    } else {
       SetErrorMessage("Enter Valid Data");
     }
   }
-// when press Enter key in input then add task to array
-  const handleEnterKey=(event)=>{
+  // when press Enter key in input then add task to array
+  const handleEnterKey = (event) => {
 
-    if(event.key === "Enter")
-    {
+    if (event.key === "Enter") {
       addTodoTask();
       // saveTaskToLocal();
       // console.log(event.key,"=====press enter");
@@ -67,10 +66,12 @@ export const Todo = () => {
 
   }
 
-// Task save to local storage
-  const saveTaskToLocal=()=>{
-    localStorage.setItem("todolist", JSON.stringify(todolist));
+  // Task save to local storage
+  const saveTaskToLocal = () => {
 
+    if (todolist?.length > 0) {
+    localStorage.setItem("todolist", JSON.stringify(todolist));
+    }
     // let dataLocalStorage = localStorage.getItem("todolist");
 
     // console.log(localStorage.getItem(todolist),"====local");
@@ -80,25 +81,25 @@ export const Todo = () => {
 
   // retrive task from local storage
 
-  const getTaskFromLocal=()=>{
+  const getTaskFromLocal = () => {
     let dataLocalStorage = localStorage.getItem("todolist");
     // SetTodoList(JSON.parse(dataLocalStorage));
-   let getData= JSON.parse(dataLocalStorage);
-   if(getData){
+    let getData = JSON.parse(dataLocalStorage);
+    if (getData) {
 
-     SetTodoList(getData)
-   }
+      SetTodoList(getData)
+    }
   }
 
-  const editBtnHandle=(id,task)=>{
-    let activeDetails={
-      key:id,
-      task:task,
-      tag:true,
+  const editBtnHandle = (id, task) => {
+    let activeDetails = {
+      key: id,
+      task: task,
+      tag: true,
     }
     SetButtonActive(activeDetails);
     SetCurrentId(id);
-    console.log(currentId,"key Edit button pressed");
+    console.log(currentId, "key Edit button pressed");
 
   }
 
@@ -107,15 +108,15 @@ export const Todo = () => {
 
   // two useEffect for -- save to local storage when trigger todolist -- other get data from local storage
   useEffect(() => {
-   
+
     saveTaskToLocal()
-   
+
   }, [todolist])
-  
+
   useEffect(() => {
-     getTaskFromLocal()
+    getTaskFromLocal()
   }, [])
-  
+
   return (
     <Fragment>
 
@@ -124,7 +125,7 @@ export const Todo = () => {
         <div className='input-container'>
           <TextInput inputValue={inputValue} handleChange={handleChangeInputValue} errorMessage={errorMessage} enterKeyPress={handleEnterKey} />
           <Buttons addTodoTask={addTodoTask} />
-          <TodoItems TaskList={todolist} EditDeleteButtonTag={buttonActive.tag} editBtnHandle={editBtnHandle} myKey={currentId}/>
+          <TodoItems TaskList={todolist} editBtnHandle={editBtnHandle} buttonActive={buttonActive} SetActiveButton={SetButtonActive} SetTodoList={SetTodoList} />
           {/* <EditItem /> */}
         </div>
       </div>
