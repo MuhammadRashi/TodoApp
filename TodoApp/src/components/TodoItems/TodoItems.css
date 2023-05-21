@@ -34,3 +34,8 @@
     opacity: 1;
     filter: invert(2)
 }
+
+.title-para{
+    text-decoration-line: line-through;
+    text-decoration-color: rgb(152, 236, 6);
+}

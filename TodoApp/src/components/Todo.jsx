@@ -44,7 +44,8 @@ export const Todo = () => {
       let currentTask = {
         key: tskId(),
         name: inputValue,
-        tag: false
+        tag: false,
+        complete:false,
 
       }
       SetTodoList((prev) => [...prev, currentTask]);
@@ -91,15 +92,15 @@ export const Todo = () => {
     }
   }
 
-  const editBtnHandle = (id, task) => {
+  const editBtnHandle = (currentTask) => {
     let activeDetails = {
-      key: id,
-      task: task,
+      key:currentTask.key,
+      task: currentTask.name,
       tag: true,
+      complete:currentTask.complete
     }
     SetButtonActive(activeDetails);
-    SetCurrentId(id);
-    console.log(currentId, "key Edit button pressed");
+    SetCurrentId(currentTask.key);
 
   }
 
